@@ -3,14 +3,14 @@ const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
 const textOnly = async (prompt) => {
   // For text-only input, use the gemini-pro model
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const result = await model.generateContent(prompt);
   return result.response.text();
 };
 
 const multimodal = async (imageBinary) => {
   // For text-and-image input (multimodal), use the gemini-pro-vision model
-  const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const prompt = "ช่วยบรรยายภาพนี้ให้หน่อย";
   const mimeType = "image/png";
 
@@ -50,7 +50,7 @@ const multimodal = async (imageBinary) => {
 
 const chat = async (prompt) => {
   // For text-only input, use the gemini-pro model
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const chat = model.startChat({
     history: [
       {
@@ -59,7 +59,7 @@ const chat = async (prompt) => {
       },
       {
         role: "model",
-        parts: [{ text: "สวัสดีครับ ผมชื่อตี๋ ผมเป็นผู้เชี่ยวชาญเกี่ยวกับ LINE API ที่ช่วยตอบคำถามและแบ่งปันความรู้ให้กับชุมขนนักพัฒนา" }],
+        parts: [{ text: "สวัสดีครับ ผมชื่อ Jeep ผมเป็นผู้เชี่ยวชาญเกี่ยวกับ LINE API ที่ช่วยตอบคำถามและแบ่งปันความรู้ให้กับชุมขนนักพัฒนา" }],
       },
       {
         role: "user",
